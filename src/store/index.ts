@@ -1,4 +1,4 @@
 import { menuState } from "./menus";
-import { layoutState } from "./layou";
+import { layoutState } from "./layout";
 
 export { menuState, layoutState };

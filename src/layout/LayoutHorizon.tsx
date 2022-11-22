@@ -1,20 +1,22 @@
 import { Outlet } from "react-router-dom";
 import { Layout } from "@douyinfe/semi-ui";
-import Menu from "./horizon/Menu";
-import { OnSelectedData } from "@douyinfe/semi-ui/lib/es/navigation";
-import style from "./styles/index.module.scss";
+import Menu from "./components/Menu";
+import User from "./components/User";
 
-export default function (props: {
-  selectMenuItem: (item: OnSelectedData) => void;
-}) {
+export default function () {
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Layout.Sider className={style["h-full"]}>
-        <Menu selectMenuItem={props.selectMenuItem} />
+    <Layout className="h-screen">
+      <Layout.Sider className="h-full">
+        <Menu />
       </Layout.Sider>
-      <Layout.Content>
-        <Outlet></Outlet>
-      </Layout.Content>
+      <Layout>
+        <Layout.Header className="h-16 border-b-1 border-bottom-gray-light-600">
+          <User></User>
+        </Layout.Header>
+        <Layout.Content className="p-1">
+          <Outlet></Outlet>
+        </Layout.Content>
+      </Layout>
     </Layout>
   );
 }

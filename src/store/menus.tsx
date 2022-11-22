@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IconHome, IconUserCircle } from "@douyinfe/semi-icons";
+import { IconHome, IconUserCircle, IconGridView } from "@douyinfe/semi-icons";
 import type { NavMenuItem } from "../types";
 
 export const menuState = atom<NavMenuItem[]>({
@@ -22,6 +22,12 @@ export const menuState = atom<NavMenuItem[]>({
           path: "/user/2",
         },
       ],
+    },
+    {
+      itemKey: "layout",
+      text: "布局",
+      icon: <IconGridView />,
+      path: "/layout",
     },
   ],
 });
