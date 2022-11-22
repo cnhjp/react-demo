@@ -31,6 +31,6 @@ export const routes: RouteItem[] = [
     path: "/test",
     element: <TestPage />,
   },
-];
+] as any;
 
 export default createBrowserRouter(routes);
