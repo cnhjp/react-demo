@@ -1,4 +1,10 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist({
+  key: "layoutState",
+  storage: localStorage,
+});
 
 export const layoutState = atom({
   key: "layoutState",
@@ -6,4 +12,5 @@ export const layoutState = atom({
     isHorizon: true,
     isDark: false,
   },
+  effects_UNSTABLE: [persistAtom],
 });

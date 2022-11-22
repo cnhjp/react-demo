@@ -7,17 +7,13 @@ import {
 } from "@douyinfe/semi-icons";
 import { useRecoilState } from "recoil";
 import { layoutState } from "../../store";
+import { toggleDarkMode } from "../../utils";
 
 export default function () {
   const [layout, setLayout] = useRecoilState(layoutState);
-  const toggleDarkMode = () => {
+  const toggleDark = () => {
+    toggleDarkMode(!layout.isDark);
     setLayout({ ...layout, isDark: !layout.isDark });
-    const body = document.body;
-    if (body.hasAttribute("theme-mode")) {
-      body.removeAttribute("theme-mode");
-    } else {
-      body.setAttribute("theme-mode", "dark");
-    }
   };
   const toggleLayout = () => {
     setLayout({ ...layout, isHorizon: !layout.isHorizon });
@@ -26,18 +22,18 @@ export default function () {
   return (
     <div className="flex justify-end items-center p-4">
       <Space>
-        <div className="h-8 w-8 flex justify-center items-center hover:cursor-pointer hover:bg-light-600">
+        <div className="h-8 w-8 flex justify-center items-center hover:cursor-pointer hover:bg-light-600 dark:hover:bg-dark-50">
           {layout.isDark ? (
             <Tooltip content="日间模式">
-              <IconSun onClick={toggleDarkMode} />
+              <IconSun onClick={toggleDark} />
             </Tooltip>
           ) : (
             <Tooltip content="夜间模式">
-              <IconMoon onClick={toggleDarkMode} />
+              <IconMoon onClick={toggleDark} />
             </Tooltip>
           )}
         </div>
-        <div className="h-8 w-8 flex justify-center items-center hover:cursor-pointer hover:bg-light-600">
+        <div className="h-8 w-8 flex justify-center items-center hover:cursor-pointer hover:bg-light-600 dark:hover:bg-dark-50">
           {layout.isHorizon ? (
             <Tooltip content="水平布局">
               <IconListView onClick={toggleLayout} />
