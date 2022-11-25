@@ -1,10 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
+
 import Layout from "../layout";
-import HomePage from "../pages/home";
-import UserPage from "../pages/user";
-import LoginPage from "../pages/login";
-import LayoutPage from "../pages/layout";
-import TestPage from "../pages/test";
+import PageHome from "../pages/home";
+import PageUser from "../pages/user";
+import PageLogin from "../pages/login";
+import PageLayout from "../pages/layout";
+import PageTest from "../pages/test";
+import Page404 from "../pages/error/404";
+import Page500 from "../pages/error/500";
+import ElementRedirect from "../components/redirect";
 import type { RouteItem } from "../types";
 
 export const routes: RouteItem[] = [
@@ -15,21 +19,48 @@ export const routes: RouteItem[] = [
       {
         path: "/",
         index: true,
-        element: <HomePage />,
+        element: <PageHome />,
         meta: { title: "首页" },
       },
-      { path: "/home", element: <HomePage />, meta: { title: "首页" } },
-      { path: "/user/:id", element: <UserPage />, meta: { title: "用户" } },
-      { path: "/layout", element: <LayoutPage />, meta: { title: "布局" } },
+      { path: "/home", element: <PageHome />, meta: { title: "首页" } },
+      { path: "/user/:id", element: <PageUser />, meta: { title: "用户" } },
+      { path: "/layout", element: <PageUser />, meta: { title: "布局" } },
+      {
+        page: "/error",
+        children: [
+          {
+            path: "/error/404",
+            element: <Page404 />,
+            meta: { title: "error-404" },
+          },
+          {
+            path: "/error/500",
+            element: <Page500 />,
+            meta: { title: "error-500" },
+          },
+        ],
+      },
     ],
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <PageLogin />,
   },
   {
     path: "/test",
-    element: <TestPage />,
+    element: <PageTest />,
+  },
+  {
+    path: "/404",
+    element: <Page404 />,
+  },
+  {
+    path: "/500",
+    element: <Page500 />,
+  },
+  {
+    path: "*",
+    element: <ElementRedirect to="/404" />,
   },
 ] as any;
 

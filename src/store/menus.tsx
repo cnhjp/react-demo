@@ -1,5 +1,10 @@
 import { atom } from "recoil";
-import { IconHome, IconUserCircle, IconGridView } from "@douyinfe/semi-icons";
+import {
+  IconHome,
+  IconUserCircle,
+  IconGridView,
+  IconUploadError,
+} from "@douyinfe/semi-icons";
 import type { NavMenuItem } from "../types";
 
 export const menuState = atom<NavMenuItem[]>({
@@ -28,6 +33,23 @@ export const menuState = atom<NavMenuItem[]>({
       text: "布局",
       icon: <IconGridView />,
       path: "/layout",
+    },
+    {
+      itemKey: "error",
+      text: "错误页",
+      icon: <IconUploadError />,
+      items: [
+        {
+          itemKey: "error-404",
+          text: "404",
+          path: "/error/404",
+        },
+        {
+          itemKey: "error-500",
+          text: "500",
+          path: "/error/500",
+        },
+      ],
     },
   ],
 });

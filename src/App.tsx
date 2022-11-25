@@ -11,5 +11,10 @@ export default function () {
     toggleDarkMode(layout.isDark);
   }, []);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <RouterProvider
+      router={router}
+      fallbackElement={<div>loading...</div>}
+    ></RouterProvider>
+  );
 }
