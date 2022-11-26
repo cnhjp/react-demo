@@ -1,4 +1,5 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterGuard } from "./components/RouterGuard";
 
 import Layout from "../layout";
 import PageHome from "../pages/home";
@@ -24,7 +25,7 @@ export const routes: RouteItem[] = [
       },
       { path: "/home", element: <PageHome />, meta: { title: "首页" } },
       { path: "/user/:id", element: <PageUser />, meta: { title: "用户" } },
-      { path: "/layout", element: <PageUser />, meta: { title: "布局" } },
+      { path: "/layout", element: <PageLayout />, meta: { title: "布局" } },
       {
         page: "/error",
         children: [
@@ -45,18 +46,22 @@ export const routes: RouteItem[] = [
   {
     path: "/login",
     element: <PageLogin />,
+    meta: { title: "登录" },
   },
   {
     path: "/test",
     element: <PageTest />,
+    meta: { title: "测试" },
   },
   {
     path: "/404",
     element: <Page404 />,
+    meta: { title: "404" },
   },
   {
     path: "/500",
     element: <Page500 />,
+    meta: { title: "500" },
   },
   {
     path: "*",
@@ -65,3 +70,4 @@ export const routes: RouteItem[] = [
 ] as any;
 
 export default createBrowserRouter(routes);
+export { RouterGuard };
