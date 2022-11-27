@@ -12,8 +12,13 @@ export const searchRoute = (
   routes: RouteItem[]
 ): RouteItem | null => {
   for (const item of routes) {
-    if (pathname === item.path) {
-      return item;
+    // 正则匹配
+    if (item.path) {
+      const path = item.path.replace(/:\w+/g, "[^/]+");
+      const reg = new RegExp(`^${path}$`);
+      if (reg.test(pathname)) {
+        return item;
+      }
     }
     if (item.children) {
       const result = searchRoute(pathname, item.children);

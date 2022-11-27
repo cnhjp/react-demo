@@ -1,0 +1,6 @@
+.login {
+  @apply w-full h-full flex justify-center items-center;
+  &-wrapper {
+    @apply w-100 py-6 px-4 border border-solid border-light-800 rounded-md shadow-light-800;
+  }
+}

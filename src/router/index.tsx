@@ -32,12 +32,12 @@ export const routes: RouteItem[] = [
           {
             path: "/error/404",
             element: <Page404 />,
-            meta: { title: "error-404" },
+            meta: { title: "错误-404" },
           },
           {
             path: "/error/500",
             element: <Page500 />,
-            meta: { title: "error-500" },
+            meta: { title: "错误-500" },
           },
         ],
       },
