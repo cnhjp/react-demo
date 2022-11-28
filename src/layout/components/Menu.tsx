@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav } from "@douyinfe/semi-ui";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -17,7 +17,7 @@ export default function (
   // 默认选中菜单项
   const { pathname } = location;
   const [defaultSelectedKeys] = useState<string[]>([
-    pathname.slice(1).replaceAll("/", "-"),
+    pathname.slice(1).replaceAll("/", "-") || "home",
   ]);
 
   // 跳转

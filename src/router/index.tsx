@@ -5,14 +5,15 @@ import Layout from "../layout";
 import PageHome from "../pages/home";
 import PageUser from "../pages/user";
 import PageLogin from "../pages/login";
+import PageLoginChooseRole from "../pages/login/ChooseRole";
 import PageLayout from "../pages/layout";
 import PageTest from "../pages/test";
 import Page404 from "../pages/error/404";
 import Page500 from "../pages/error/500";
 import ElementRedirect from "../components/redirect";
-import type { RouteItem } from "../types";
+import type { MenuTypes } from "../types";
 
-export const routes: RouteItem[] = [
+export const routes: MenuTypes.RouteItem[] = [
   {
     path: "/",
     element: <Layout />,
@@ -47,6 +48,11 @@ export const routes: RouteItem[] = [
     path: "/login",
     element: <PageLogin />,
     meta: { title: "登录" },
+  },
+  {
+    path: "/choose-role",
+    element: <PageLoginChooseRole />,
+    meta: { title: "选择角色" },
   },
   {
     path: "/test",

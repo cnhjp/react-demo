@@ -1,14 +1,19 @@
 import style from "./index.module.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Toast } from "@douyinfe/semi-ui";
 import { IconUserCircle, IconLock } from "@douyinfe/semi-icons";
-import { login as loginApi } from "../../api";
+import { userApis } from "../../api";
+import { useRecoilState } from "recoil";
+import { userState } from "../../store/user";
 
 export default function () {
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
+  const [user, setUser] = useRecoilState(userState);
+  const navigate = useNavigate();
 
   // 更新表单
   const updateForm = (v: { username: string; password: string }) => {
@@ -21,8 +26,14 @@ export default function () {
     if (!form.username || !form.password) {
       return Toast.error("请输入用户名和密码");
     }
-    const resp = await loginApi(form);
-    console.log("token is ", resp.data.token);
+    const { data } = await userApis.login(form);
+    const { token } = data;
+    if (token) {
+      setUser({ ...user, token });
+      navigate("/choose-role");
+    } else {
+      Toast.error("登录失败");
+    }
   };
 
   return (

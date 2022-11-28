@@ -1,5 +1,5 @@
 import { Location, NavigateFunction } from "react-router-dom";
-import type { RouteItem } from "../../types";
+import type { MenuTypes } from "../../types";
 
 /**
  * 查找路由
@@ -9,8 +9,8 @@ import type { RouteItem } from "../../types";
  */
 export const searchRoute = (
   pathname: string,
-  routes: RouteItem[]
-): RouteItem | null => {
+  routes: MenuTypes.RouteItem[]
+): MenuTypes.RouteItem | null => {
   for (const item of routes) {
     // 正则匹配
     if (item.path) {
@@ -40,7 +40,7 @@ export const searchRoute = (
 export const guard = (
   location: Location,
   navigate: NavigateFunction,
-  routes: RouteItem[]
+  routes: MenuTypes.RouteItem[]
 ): boolean => {
   const { pathname } = location;
   const route = searchRoute(pathname, routes);

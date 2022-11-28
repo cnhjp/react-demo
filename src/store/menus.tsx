@@ -5,9 +5,9 @@ import {
   IconGridView,
   IconUploadError,
 } from "@douyinfe/semi-icons";
-import type { NavMenuItem } from "../types";
+import type { MenuTypes } from "../types";
 
-export const menuState = atom<NavMenuItem[]>({
+export const menuState = atom<MenuTypes.NavMenuItem[]>({
   key: "menuState",
   default: [
     { itemKey: "home", text: "首页", icon: <IconHome />, path: "/home" },

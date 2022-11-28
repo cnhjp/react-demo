@@ -1,22 +1,40 @@
-import { Avatar, Space, Tooltip } from "@douyinfe/semi-ui";
+import { Avatar, Space, Tooltip, Dropdown } from "@douyinfe/semi-ui";
 import {
   IconMoon,
   IconSun,
   IconSidebar,
   IconListView,
+  IconUser,
+  IconExit,
 } from "@douyinfe/semi-icons";
-import { useRecoilState } from "recoil";
-import { layoutState } from "../../store";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { layoutState, userSelector, userState } from "../../store";
 import { toggleDarkMode } from "../../utils";
 
 export default function () {
   const [layout, setLayout] = useRecoilState(layoutState);
+  const [user, setUser] = useRecoilState(userState);
+  const userGetter = useRecoilValue(userSelector);
+  const navigate = useNavigate();
+  // 切换暗色模式
   const toggleDark = () => {
     toggleDarkMode(!layout.isDark);
     setLayout({ ...layout, isDark: !layout.isDark });
   };
+  // 切换布局样式
   const toggleLayout = () => {
     setLayout({ ...layout, isHorizon: !layout.isHorizon });
+  };
+  // 退出登录
+  const logout = () => {
+    setUser({
+      token: "",
+      roleId: "",
+      roleType: "",
+      name: "",
+    });
+    navigate("/login");
   };
 
   return (
@@ -44,9 +62,22 @@ export default function () {
             </Tooltip>
           )}
         </div>
-        <Avatar size="small" alt="Hjp">
-          H
-        </Avatar>
+        <Dropdown
+          render={
+            <Dropdown.Menu>
+              <Dropdown.Item icon={<IconUser />}>
+                {userGetter.roleTypeStr}
+              </Dropdown.Item>
+              <Dropdown.Item icon={<IconExit />} onClick={logout}>
+                登出
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          }
+        >
+          <Avatar size="small" alt="Hjp">
+            H
+          </Avatar>
+        </Dropdown>
       </Space>
     </div>
   );
