@@ -1,10 +1,12 @@
 import type { RouteObject } from "react-router-dom";
+import { UserEnums } from "../enums";
 
 export namespace MenuTypes {
   export type RouteItem = RouteObject & {
     meta?: {
       auth?: boolean;
       title?: string;
+      roles?: UserEnums.ROLE_TYPE[];
     };
     children?: RouteItem[];
   };

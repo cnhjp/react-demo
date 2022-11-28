@@ -1,4 +1,5 @@
 import { Location, NavigateFunction } from "react-router-dom";
+import { Toast } from "@douyinfe/semi-ui";
 import type { MenuTypes } from "../../types";
 
 /**
@@ -40,14 +41,24 @@ export const searchRoute = (
 export const guard = (
   location: Location,
   navigate: NavigateFunction,
-  routes: MenuTypes.RouteItem[]
+  routes: MenuTypes.RouteItem[],
+  user: any
 ): boolean => {
   const { pathname } = location;
   const route = searchRoute(pathname, routes);
   if (route) {
+    // title
     if (route.meta?.title) {
       document.title = route.meta.title;
     }
+    // 登录验证
+    if (route.meta?.auth && !user.token) {
+      Toast.warning("请先登录");
+      navigate("/login");
+      return false;
+    }
+    // 角色页面权限
+
     return true;
   } else {
     navigate("/404");

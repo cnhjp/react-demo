@@ -1,4 +1,4 @@
-import { Avatar, Space, Tooltip, Dropdown } from "@douyinfe/semi-ui";
+import { Avatar, Space, Tooltip, Dropdown, Modal } from "@douyinfe/semi-ui";
 import {
   IconMoon,
   IconSun,
@@ -28,13 +28,18 @@ export default function () {
   };
   // 退出登录
   const logout = () => {
-    setUser({
-      token: "",
-      roleId: "",
-      roleType: "",
-      name: "",
+    Modal.confirm({
+      title: "确认退出登录？",
+      onOk: () => {
+        setUser({
+          token: "",
+          roleId: "",
+          roleType: "",
+          name: "",
+        });
+        navigate("/login");
+      },
     });
-    navigate("/login");
   };
 
   return (

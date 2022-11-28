@@ -22,23 +22,35 @@ export const routes: MenuTypes.RouteItem[] = [
         path: "/",
         index: true,
         element: <PageHome />,
-        meta: { title: "首页" },
+        meta: { title: "首页", auth: true },
       },
-      { path: "/home", element: <PageHome />, meta: { title: "首页" } },
-      { path: "/user/:id", element: <PageUser />, meta: { title: "用户" } },
-      { path: "/layout", element: <PageLayout />, meta: { title: "布局" } },
+      {
+        path: "/home",
+        element: <PageHome />,
+        meta: { title: "首页", auth: true },
+      },
+      {
+        path: "/user/:id",
+        element: <PageUser />,
+        meta: { title: "用户", auth: true },
+      },
+      {
+        path: "/layout",
+        element: <PageLayout />,
+        meta: { title: "布局", auth: true },
+      },
       {
         page: "/error",
         children: [
           {
             path: "/error/404",
             element: <Page404 />,
-            meta: { title: "错误-404" },
+            meta: { title: "错误-404", auth: true },
           },
           {
             path: "/error/500",
             element: <Page500 />,
-            meta: { title: "错误-500" },
+            meta: { title: "错误-500", auth: true },
           },
         ],
       },
