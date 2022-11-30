@@ -58,6 +58,11 @@ export const guard = (
       return false;
     }
     // 角色页面权限
+    if (route.meta?.roles && !route.meta.roles.includes(user.role)) {
+      Toast.warning("无权限访问");
+      navigate("/403");
+      return false;
+    }
 
     return true;
   } else {

@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RouterGuard } from "./components/RouterGuard";
+import { UserEnums } from "../enums";
 
 import Layout from "../layout";
 import PageHome from "../pages/home";
@@ -8,6 +9,7 @@ import PageLogin from "../pages/login";
 import PageLoginChooseRole from "../pages/login/ChooseRole";
 import PageLayout from "../pages/layout";
 import PageTest from "../pages/test";
+import Page403 from "../pages/error/403";
 import Page404 from "../pages/error/404";
 import Page500 from "../pages/error/500";
 import ElementRedirect from "../components/redirect";
@@ -37,11 +39,16 @@ export const routes: MenuTypes.RouteItem[] = [
       {
         path: "/layout",
         element: <PageLayout />,
-        meta: { title: "布局", auth: true },
+        meta: { title: "布局", auth: true, roles: [UserEnums.ROLE_TYPE.ADMIN] },
       },
       {
         page: "/error",
         children: [
+          {
+            path: "/error/403",
+            element: <Page403 />,
+            meta: { title: "错误-403", auth: true },
+          },
           {
             path: "/error/404",
             element: <Page404 />,
@@ -70,6 +77,11 @@ export const routes: MenuTypes.RouteItem[] = [
     path: "/test",
     element: <PageTest />,
     meta: { title: "测试" },
+  },
+  {
+    path: "/403",
+    element: <Page403 />,
+    meta: { title: "错误-403" },
   },
   {
     path: "/404",
