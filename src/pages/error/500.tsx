@@ -1,4 +1,4 @@
-import ImgExclamationMark from "../../assets/images/exclamation-mark.png";
+import ImgExclamationMark from "../../assets/images/Exclamation-Mark.png";
 
 export default function () {
   return (
