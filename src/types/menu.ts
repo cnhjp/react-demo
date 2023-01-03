@@ -17,5 +17,6 @@ export namespace MenuTypes {
     path?: string;
     icon?: any;
     items?: NavMenuItem[];
+    roles: Array<UserEnums.ROLE_TYPE>;
   }
 }

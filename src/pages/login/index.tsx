@@ -44,14 +44,14 @@ export default function () {
             prefix={<IconUserCircle />}
             field="username"
             label="用户"
-            placeholder="请输入用户名"
+            placeholder="请输入用户名: admin"
           ></Form.Input>
           <Form.Input
             prefix={<IconLock />}
             field="password"
             label="密码"
             type="password"
-            placeholder="请输入密码"
+            placeholder="请输入密码: 123456"
           ></Form.Input>
           <Button
             theme="solid"
